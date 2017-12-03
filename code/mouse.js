@@ -33,13 +33,46 @@ function pointWithinBoxFromSeperatePoints(entity,entityx,entityy){
 canvas.addEventListener('mouseup', function(evt) {
   if(canClick == true){
     if(evt.button === left){
-
       for(var i = 0; i < tiles.length; i++){
-        if(pointWithinBoxFromSeperatePoints(tiles[i],mousePos.x,mousePos.y)){
-          selectedTile = tiles[i];
+        if(gameMode==1){
+          if(pointWithinBoxFromSeperatePoints(tiles[i],mousePos.x,mousePos.y)){
+            if(selectedTile==tiles[i]){
+              selectedTile = null;
+            }else selectedTile = tiles[i];
+          }
+
+        }else if(gameMode == 2){
+
+          if(pointWithinBoxFromSeperatePoints(tiles[i],mousePos.x,mousePos.y)){
+            if(tiles[i].linkedUnit!=null && tiles[i].linkedUnit.affinity==angels){
+                if(selectedUnit==tiles[i].linkedUnit){
+                 selectedUnit=null;
+               }else selectedUnit = tiles[i].linkedUnit;
+            }else if(selectedUnit!=null && tiles[i].linkedUnit==null){
+              if(selectedUnit.withinCastRange(tiles[i].x,tiles[i].y)) selectedUnit.move(tiles[i].x,tiles[i].y);
+            }
+          }
+
+        }else if(gameMode == 3){
+          if(pointWithinBoxFromSeperatePoints(tiles[i],mousePos.x,mousePos.y)){
+            if(tiles[i].linkedUnit!=null && tiles[i].linkedUnit.affinity==angels){
+                if(selectedUnit==tiles[i].linkedUnit){
+                 selectedUnit=null;
+               }else{
+                 selectedUnit = tiles[i].linkedUnit;
+                 clearAimTiles();
+               }
+            }else if(selectedUnit!=null && tiles[i].linkedUnit==null){
+              // if(selectedUnit.withinCastRange(tiles[i].x,tiles[i].y)) selectedUnit.move(tiles[i].x,tiles[i].y);
+            }
+          }
+          for(var i = 0; i < aimTiles.length; i++){
+            if(pointWithinBoxFromSeperatePoints(aimTiles[i],mousePos.x,mousePos.y)){
+              selectedUnit = null;
+            }
+          }
         }
       }
-
     }
     if(evt.button === right){
 

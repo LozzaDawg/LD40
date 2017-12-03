@@ -11,9 +11,9 @@ function generateTiles(){
       map[mapY].push(tiles[tiles.length-1])
     }
   }
-  evilTerritory = Math.ceil(map.length*(3/9));
-  neutralTerritory = Math.ceil(map.length*(6/9));
-  goodTerritory = Math.ceil(map.length*(9/9));
+  evilTerritory = Math.ceil(map.length*(1/6));
+  neutralTerritory = Math.ceil(map.length*(5/6));
+  goodTerritory = Math.ceil(map.length*(6/6));
   for(var i = 0; i < tiles.length; i++){
     tiles[i].setAffinity(tiles[i].y);
   }
