@@ -28,8 +28,11 @@ Tile.prototype.getAffinityColour = function () {
 }
 
 Tile.prototype.render = function () {
-  c.fillStyle = this.getAffinityColour();
-  c.fillRect(this.xPos,this.yPos,this.width,this.width);
+  if(this.affinity==angels) angelTilespr.render(this.x*tileWidth,this.y*tileWidth)
+  if(this.affinity==null) neutralTilespr.render(this.x*tileWidth,this.y*tileWidth)
+  if(this.affinity==demons) demonTilespr.render(this.x*tileWidth,this.y*tileWidth)
+  // c.fillStyle = this.getAffinityColour();
+  // c.fillRect(this.x*tileWidth,this.y*tileWidth,this.width,this.width);
   if(this == selectedTile) this.renderBorder("rgb(19, 19, 19)");
   if(this.linkedUnit!=null && this.linkedUnit == selectedUnit) this.renderBorder("rgb(194, 175, 6)");
   if(this.linkedUnit!=null && this.linkedUnit == selectedUnit && gameMode==3) this.renderBorder("rgb(197, 207, 10)");
@@ -99,11 +102,18 @@ function testIfOccupied(){
   for(var mapY = 0; mapY < map.length; mapY++){
     for(var mapX = 0; mapX < map[mapY].length; mapX++){
       map[mapY][mapX].linkedUnit = null;
-      for(var a = 0; a < units.length; a++){
-        if(units[a].x==mapX && units[a].y==mapY){
-          map[mapY][mapX].linkedUnit = units[a];
-          units[a].linkedTile = map[mapY][mapX];
-          map[mapY][mapX].affinity = units[a].affinity;
+      for(var a = 0; a < angels.length; a++){
+        if(angels[a].x==mapX && angels[a].y==mapY){
+          map[mapY][mapX].linkedUnit = angels[a];
+          angels[a].linkedTile = map[mapY][mapX];
+          map[mapY][mapX].affinity = angels[a].affinity;
+        }
+      }
+      for(var d = 0; d < demons.length; d++){
+        if(demons[d].x==mapX && demons[d].y==mapY){
+          map[mapY][mapX].linkedUnit = demons[d];
+          demons[d].linkedTile = map[mapY][mapX];
+          map[mapY][mapX].affinity = demons[d].affinity;
         }
       }
     }

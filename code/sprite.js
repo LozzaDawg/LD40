@@ -12,3 +12,7 @@ var angel1spr = new Sprite(64,64,angel1img);
 var angel2spr = new Sprite(64,64,angel2img);
 var demon1spr = new Sprite(64,64,demon1img);
 var demon2spr = new Sprite(64,64,demon2img);
+
+var angelTilespr = new Sprite(64,64,angelTileimg);
+var neutralTilespr = new Sprite(64,64,neutralTileimg);
+var demonTilespr = new Sprite(64,64,demonTileimg);

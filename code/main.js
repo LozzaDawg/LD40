@@ -15,7 +15,7 @@ fClass = {
   evilMagic:4,
   evilRanged:5
 }
-new Unit(2,5,angel1spr,angels,"Mage");
+new Unit(2,5,angel1spr,angels,"Mage",fClass.goodMagic);
 new Unit(1,5,angel2spr,angels,"Gladiator",fClass.goodMelee);
 new Unit(3,5,angel2spr,angels,"Gladiator",fClass.goodMelee);
 new Unit(2,0,demon1spr,demons,"Pyromancer");

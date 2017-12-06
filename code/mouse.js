@@ -66,9 +66,20 @@ canvas.addEventListener('mouseup', function(evt) {
               // if(selectedUnit.withinCastRange(tiles[i].x,tiles[i].y)) selectedUnit.move(tiles[i].x,tiles[i].y);
             }
           }
-          for(var i = 0; i < aimTiles.length; i++){
-            if(pointWithinBoxFromSeperatePoints(aimTiles[i],mousePos.x,mousePos.y)){
-              selectedUnit = null;
+          for(var j = 0; j < aimTiles.length;j++){
+            if(pointWithinBoxFromSeperatePoints(aimTiles[j],mousePos.x,mousePos.y)){
+
+              // switch (selectedUnit.class){
+              //   case fClass.goodMelee:
+              //     break;
+              //   case fClass.goodMagic:
+              //     break;
+              // }
+
+              if(selectedUnit.class==fClass.goodMelee) selectedUnit.stab(aimTiles[j].x,aimTiles[j].y);
+              if(selectedUnit.class==fClass.goodMagic) selectedUnit.shootHolyBeam(aimTiles);
+              return;
+              break;
             }
           }
         }
